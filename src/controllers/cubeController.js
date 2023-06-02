@@ -5,6 +5,7 @@ const cubeManager = require('../managers/cubeManager');
 router.get('/create', (req, res) => {
     res.render('create');
 });
+
 router.post('/create', (req, res) => {
     const {
         name,
@@ -18,6 +19,15 @@ router.post('/create', (req, res) => {
         difficultyLevel: Number(difficultyLevel)
     });
     res.redirect('/');
-})
+});
+
+router.get('/:cubeId/details', (req, res) => {
+    const cube = cubeManager.getOne(req.params.cubeId);
+
+    if (!cube) {
+        return res.redirect('/404')
+    }
+    res.render('details', { cube });
+});
 
 module.exports = router;
