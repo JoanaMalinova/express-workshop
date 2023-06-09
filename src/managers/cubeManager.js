@@ -1,11 +1,8 @@
 const Cube = require('../models/Cube');
 
-const cubes = [];
-const uniqid = require('uniqid');
-
 exports.getAll = (search, from, to) => {
 
-    let result = cubes.slice();
+    let result = Cube.find();
 
     if (search) {
         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
