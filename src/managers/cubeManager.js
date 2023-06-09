@@ -22,7 +22,7 @@ exports.getAll = (search, from, to) => {
     return result;
 }
 
-exports.getOne = (id) => cubes.find(cube => cube.id === id);
+exports.getOne = (id) => Cube.findById(id);
 
 exports.create = async (cubeData) => {
 
