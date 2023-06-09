@@ -7,4 +7,6 @@ const cubeSchema = new mongoose.Schema({
     imageUrl: String
 })
 
-const Cube = mongoose.model()
+const Cube = mongoose.model('Cube', cubeSchema);
+
+module.exports = Cube;
