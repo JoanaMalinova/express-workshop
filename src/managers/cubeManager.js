@@ -1,8 +1,8 @@
 const Cube = require('../models/Cube');
 
-exports.getAll = (search, from, to) => {
+exports.getAll = async (search, from, to) => {
 
-    let result = Cube.find();
+    let result = await Cube.find().lean();
 
     if (search) {
         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
