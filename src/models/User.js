@@ -12,6 +12,7 @@ userSchema.virtual('repeatPassword')
             throw new mongoose.MongooseError('Password and repeat password don\'t match!')
         }
     });
+
 userSchema.pre('save', async function () {
     const hash = await bcrypt.hash(this.password, 10);
 
