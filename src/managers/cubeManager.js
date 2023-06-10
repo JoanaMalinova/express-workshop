@@ -19,7 +19,7 @@ exports.getAll = async (search, from, to) => {
     return result;
 }
 
-exports.getOne = (id) => Cube.findById(id);
+exports.getOne = (id) => Cube.findById(id).populate('accessories');
 
 exports.create = (cubeData) => {
 
