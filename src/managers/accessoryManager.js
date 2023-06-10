@@ -2,9 +2,9 @@ const Accessory = require('../models/Accessory');
 
 exports.create = (data) => Accessory.create(data);
 
-exports.getAll = async () => {
+exports.getAll = async () => Accessory.find();
 
-    const accessories = Accessory.find();
+exports.getAvailable = (accessoryIds) => Accessory.find({ _id: { $nin: accessoryIds } });
 
-}
+
 
