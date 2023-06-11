@@ -53,16 +53,27 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
 
 router.get('/:cubeId/edit', async (req, res) => {
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
+
     res.render('cube/edit', { cube });
+});
+
+router.post('/:cubeId/edit', async (req, res) => {
+    const { name, description, imageUrl, difficultyLevel } = req.body;
+
+    await cubeManager.editCube(req.params.cubeId, { name, description, imageUrl, difficultyLevel });
+
+    res.redirect(`/cubes/${req.params.cubeId}/details`)
 });
 
 router.get('/:cubeId/delete', async (req, res) => {
     const cube = await cubeManager.getOne(req.params.cubeId).lean();
+
     res.render('cube/delete', { cube });
 });
 
 router.post('/:cubeId/delete', async (req, res) => {
     await cubeManager.deleteCube(req.params.cubeId);
+
     res.redirect('/');
 });
 
