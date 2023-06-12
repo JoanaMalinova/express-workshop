@@ -24,10 +24,16 @@ router.get('/register', async (req, res) => {
 router.post('/register', async (req, res) => {
 
     const { username, password, repeatPassword } = req.body;
+    try {
+        await userManager.register({ username, password, repeatPassword });
 
-    await userManager.register({ username, password, repeatPassword });
+        res.redirect('/users/login');
 
-    res.redirect('/users/login');
+    } catch (err) {
+        const firstErrorMessage = Object.values(err.errors)[0].message;
+        res.status(404).render('/users/register', { errorMessage: firstErrorMessage });
+
+    }
 
 })
 
